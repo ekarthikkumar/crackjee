@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block breadcrumbs %}
+	<ul class="breadcrumb">
+		<li class="active">{{ user_fname }}</li>
+	</ul>
+{% endblock %}
+	
+{% block content %}
+<div class="container">
+	<h2>Welcome {{ user_fname }}</h2>
+	<div class="row">
+		<div class="span4">
+			<div class="well" style="padding: 8px 0pt; max-width: 340px;">
+		    <ul class="nav nav-list">
+		      <li class="nav-header">Joint Entrance Exam</li>
+		      <li class="active"><a href="#">Home</a></li>
+		      <li><a href="#">JEE Previous Question papers</a></li>
+		      <li><a href="#">Mock Tests</a></li>
+		      
+		      <li class="nav-header">Staff Selection commision</li>
+		      <li><a href="#">Combined Graduate Level</a></li>
+		      <li><a href="#">Combined Higher Secondary Level (10+2)</a></li>
+		      <li><a href="#">Multi Tasking-MTS(SSLC)</a></li>		      
+		      
+		      <li class="nav-header">My Account</li>
+		      <li><a href="#">Profile</a></li>
+		      <li><a href="#">Settings</a></li>
+		      <li><a href="/accounts/logout/">Log Out</a></li>
+		      <li class="divider"></li>
+		      <li id="instructions"><a href="#">Help</a></li>
+		    </ul>
+		  </div> <!-- /well -->
+		</div><!-- /span4-->
+		<div class="span8">
+			<div class="well description" style="padding: 10px; max-width: 600px;">
+				<b>Hai {{ user_fname }}!!. New exams are updated. Please check out the prices.</b>
+				<!-- this is just test for templatefilters and template tags
+					these will loaded when the home page is initialized
+					ie alots of texts-->
+				<!-- will look for e_extras.py in any app/templatetags directory-->
+				{% load e_extras %}
+				<!-- template filter test.-->
+				{{ lpc|multiply_nums:4 }}
+				<br>
+				<!-- template tag test
+				
+				endof test for templatefilters and template tags-->
+		  </div><!-- /well -->
+		</div><!-- /span8-->
+	</div><!-- /row-->   
+</div><!-- /container--> 
+{% endblock %}
+{% block extrajavascript %}
+	<script src="/static/js/user_home.js"></script>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block breadcrumbs %}
+	<ul class="breadcrumb">
+		<li><a href="#">Home</a> <span class="divider">/</span></li>
+		<li><a href="#">Guest</a> <span class="divider">/</span></li>
+		<li><a href="#">JEE</a> <span class="divider">/</span></li>
+		<li class="active" id="ExamName">JEE Main 2013</li>
+	</ul>
+{% endblock %}
+	
+{% block content %}
+<div class="container">
+<div class="mini-layout">	
+	<div class="mini-layout-body">	
+		<!-- Question bar
+		================================================== -->
+	<div class="pagination">
+		<ul><!--<ul class="nav nav-pills">-->
+		<li class="sub active"><a class="subject" href="#">Physics</a></li>
+		<li class="sub"><a class="subject" href="#">Chemistry</a></li>
+		<li class="sub"><a class="subject" href="#">Mathematics</a></li>
+		</ul>
+	</div>
+    <h4>Question <span class="questionnumber"></span></h4>
+	<div class="question-box"></div>
+	<div class="bs-docs-grid">
+			    		
+		{% for i in "1234" %}
+			{% if not forloop.counter|divisibleby:"2" %}
+				<ul class="thumbnails">	    					
+			{% endif %}
+				<li class="span4">
+				<label class="radio">
+					<input name="Choices" class="ch{{ i }}" value="{{ i }}" type="radio">
+					<a class="thumbnail" id="opt{{ i }}"></a>
+				</label>
+				</li>
+			{% if forloop.counter|divisibleby:"2" %}
+				</ul>  					
+			{% endif %}
+		{% endfor %}
+		
+	</div>
+		<div class="btn-group">	
+			<button class="btn btn-success" id="btn-back">← Previous</button>
+			<button class="btn btn-success" id="btn-next">Save & Next →
+			</button>
+		</div>
+		<div class="btn-group">
+			<button class="btn btn-inverse" id="btn-skip">Skip Question
+			</button>
+			<button class="btn btn-warning" id="btn-reset">Reset Question
+			</button>
+		</div>
+		<button class="btn btn-danger" id="btn-submit">SUBMIT</button>
+				
+	</div><!-- end of mini layout body-->	
+	<div class="mini-layout-sidebar">
+		<div class="timer-box">Time Left: <span class="testtime"></span></div>
+		<div class="well" style="padding:5px">
+			{% for i in ".............................." %}
+				{% if forloop.first %}
+					<div class="btn-group">
+					<button class="btn btn-nav-quests" id="btn-nav{{ forloop.counter }}">
+					{{ forloop.counter }}
+					</button>
+				{% elif forloop.last %}
+					<button class="btn btn-nav-quests" id="btn-nav{{ forloop.counter }}">
+					{{ forloop.counter }}
+					</button>
+					</div>
+				{% elif forloop.counter|divisibleby:"6" %}
+					<button class="btn btn-nav-quests" id="btn-nav{{ forloop.counter }}">
+					{{ forloop.counter }}
+					</button>
+					</div><br>
+					<div class="btn-group">
+				{% else %}	
+					<button class="btn btn-nav-quests" id="btn-nav{{ forloop.counter }}">
+					{{ forloop.counter }}
+					</button>
+				{% endif %}
+								
+			{% endfor %}
+			<!--{% for i in "123456" %}
+			<div class="btn-group">
+				{% for j in "12345" %}
+				<button class="btn btn-nav-quests" id="btn-nav{{ forloop.parentloop.counter }}">{{ forloop.counter }}</button>
+				{% endfor %}
+			</div>
+			{% endfor %}-->
+		</div>		
+	</div>
+</div>
+</div>
+{% endblock %}
+{% block extrajavascript %}
+	<script src="/static/js/timer.js"></script>
+	<script src="/static/js/myjs.js"></script>
+{% endblock %}
