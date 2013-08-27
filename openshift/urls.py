@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('openshift',
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', 'person.views.home'),
+	url(r'^$', 'person.views.exam'),
 		
 	url(r'^accounts/profile/exam/$','person.views.exam'),
 	url(r'^accounts/profile/$','person.views.home'),
@@ -15,7 +15,7 @@ urlpatterns = patterns('openshift',
     url(r'^accounts/logout/$', logout),
     
     url(r'^demoexam/$', 'exam.views.demo'),
-    url(r'^startexam/$', 'exam.views.startexam'),
+    url(r'^startexam/$', 'exam.views.show_question'),
     url(r'^show-question/$', 'exam.views.show_question'),
 )
  
